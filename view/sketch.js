@@ -19,14 +19,14 @@ var drumMachine;
 var notes = [ 60, 62, 64, 65, 67, 69, 71];
 
 var drumSounds = {
-  pad1: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/LowTomA_GatedReverb_Mono.wav"),
-  pad2: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/BigSnareE_12BitLoFi_Mono.wav"),
-  pad3: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/RimTomB_GatedReverb_Mono.wav"),
-  pad4: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/ReverseCymbal_Mono.wav"),
-  pad5: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/ArcadeGameHits_Mono.wav"),
-  pad6: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/90BpmBongoRiddim_Edit1_Mono.wav"),
-  pad7: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/SleighBell_LargeF#_Reverb_Mono.wav"),
-  pad8: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/90BpmFunkDrumLoop2_Edit_Mono.wav")
+  pad1: new p5.SoundFile("../backend/assets/LowTomA_GatedReverb_Mono.wav"),
+  pad2: new p5.SoundFile("../backend/assets/BigSnareE_12BitLoFi_Mono.wav"),
+  pad3: new p5.SoundFile("../backend/assets/RimTomB_GatedReverb_Mono.wav"),
+  pad4: new p5.SoundFile("../backend/assets/ReverseCymbal_Mono.wav"),
+  pad5: new p5.SoundFile("../backend/assets/ArcadeGameHits_Mono.wav"),
+  pad6: new p5.SoundFile("../backend/assets/90BpmBongoRiddim_Edit1_Mono.wav"),
+  pad7: new p5.SoundFile("../backend/assets/SleighBell_LargeF#_Reverb_Mono.wav"),
+  pad8: new p5.SoundFile("../backend/assets/90BpmFunkDrumLoop2_Edit_Mono.wav")
 
 } 
 
