@@ -18,6 +18,18 @@ var drumMachine;
 // The midi notes of a scale
 var notes = [ 60, 62, 64, 65, 67, 69, 71];
 
+var drumSounds = {
+  pad1: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/LowTomA_GatedReverb_Mono.wav"),
+  pad2: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/BigSnareE_12BitLoFi_Mono.wav"),
+  pad3: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/RimTomB_GatedReverb_Mono.wav"),
+  pad4: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/ReverseCymbal_Mono.wav"),
+  pad5: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/ArcadeGameHits_Mono.wav"),
+  pad6: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/90BpmBongoRiddim_Edit1_Mono.wav"),
+  pad7: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/SleighBell_LargeF#_Reverb_Mono.wav"),
+  pad8: new p5.SoundFile("/Users/c4q/Desktop/codingStuff/MyFIrstSynthesizer/backend/assets/90BpmFunkDrumLoop2_Edit_Mono.wav")
+
+} 
+
 // For automatically playing the song
 var index = 0;
 var song = [
@@ -34,6 +46,19 @@ var trigger = 0;
 var autoplay = false;
 var osc;
 let ctx, ctxOn;
+let padArr = [
+  drumSounds["pad1"],
+  drumSounds["pad2"],
+  drumSounds["pad3"],
+  drumSounds["pad4"],
+  drumSounds["pad5"],
+  drumSounds["pad6"],
+  drumSounds["pad7"],
+  drumSounds["pad8"]  
+];
+let loadSounds;
+let selectedPad;
+
 
 function setup() {
   ctx = getAudioContext();
@@ -46,6 +71,10 @@ function setup() {
       });
   createCanvas(720, 800);
   drumMachine = createGraphics(720, 400);
+  soundFormats('wav', 'mp3', 'ogg');
+
+  loadSounds = loadSound(padArr, loaded);
+
   var div = createDiv("Click to play notes or ")
   div.id("instructions");
   var button = createButton("play song automatically.");
@@ -82,6 +111,9 @@ function playNote(note, duration) {
     }, duration-50);
   }
 }
+}
+function loaded(){
+  loadSounds.play();
 }
 
 function draw() {
@@ -143,6 +175,7 @@ function draw() {
         // Or just rolling over
         } else {
           drumMachine.fill(107);
+          selectedPad = i
         }
       } else {
         drumMachine.fill(255);
@@ -165,6 +198,7 @@ function draw() {
         // Or just rolling over
         } else {
           drumMachine.fill(107);
+          selectedPad = i
         }
       } else {
         drumMachine.fill(255);
@@ -187,13 +221,19 @@ function draw() {
 // console.log(`x axis: ${mouseX}`, `y axis: ${mouseY}`)
 }
 
-// When we click
+// When we click we click a key
 function mousePressed() {
   // Map mouse to the key index
   var key = floor(map(mouseX, 0, width, 0, notes.length));
   playNote(notes[key]);
 }
 
+// When we click a pad
+function mouseClicked() {
+  // selectedPad determined by mouse hover
+  loadSounds[selectedPad].playMode('restart');
+  loadSounds[selectedPad].play();
+}
 
 // Fade it out when we release
 function mouseReleased() {
