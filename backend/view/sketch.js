@@ -1,17 +1,3 @@
-// function setup() { 
-//     createCanvas(640, 480);
-//   } 
-  
-//   function draw() { 
-//       if(mouseIsPressed){
-//           fill(0);
-//       }else{
-//           fill(255);
-//       }
-//       ellipse(mouseX, mouseY, 80, 80)
-//     // background(220);
-//     // ellipse(50, 50, 80, 80);
-//   }
 
 var drumMachine;
 
@@ -19,14 +5,14 @@ var drumMachine;
 var notes = [ 60, 62, 64, 65, 67, 69, 71];
 
 var drumSounds = {
-  pad1: new p5.SoundFile("../assets/LowTomA_GatedReverb_Mono.wav"),
-  pad2: new p5.SoundFile("../assets/BigSnareE_12BitLoFi_Mono.wav"),
-  pad3: new p5.SoundFile("../assets/RimTomB_GatedReverb_Mono.wav"),
-  pad4: new p5.SoundFile("../assets/ReverseCymbal_Mono.wav"),
-  pad5: new p5.SoundFile("../assets/ArcadeGameHits_Mono.wav"),
-  pad6: new p5.SoundFile("../assets/90BpmBongoRiddim_Edit1_Mono.wav"),
-  pad7: new p5.SoundFile("../assets/SleighBell_LargeF#_Reverb_Mono.wav"),
-  pad8: new p5.SoundFile("../assets/90BpmFunkDrumLoop2_Edit_Mono.wav")
+  pad1: ["../assets/LowTomA_GatedReverb_Mono.wav"],
+  pad2: ["../assets/BigSnareE_12BitLoFi_Mono.wav"],
+  pad3: ["../assets/RimTomB_GatedReverb_Mono.wav"],
+  pad4: ["../assets/ReverseCymbal_Mono.wav"],
+  pad5: ["../assets/ArcadeGameHits_Mono.wav"],
+  pad6: ["../assets/90BpmBongoRiddim_Edit1_Mono.wav"],
+  pad7: ["../assets/SleighBell_LargeF#_Reverb_Mono.wav"],
+  pad8: ["../assets/90BpmFunkDrumLoop2_Edit_Mono.wav"]
 
 } 
 
@@ -46,19 +32,23 @@ var trigger = 0;
 var autoplay = false;
 var osc;
 let ctx, ctxOn;
-let padArr = [
-  drumSounds["pad1"],
-  drumSounds["pad2"],
-  drumSounds["pad3"],
-  drumSounds["pad4"],
-  drumSounds["pad5"],
-  drumSounds["pad6"],
-  drumSounds["pad7"],
-  drumSounds["pad8"]  
-];
+
 let loadSounds;
 let selectedPad;
+let padArr;
 
+function preload() {
+  padArr = [
+    loadSound(drumSounds["pad1"]),
+    loadSound(drumSounds["pad2"]),
+    loadSound(drumSounds["pad3"]),
+    loadSound(drumSounds["pad4"]),
+    loadSound(drumSounds["pad5"]),
+    loadSound(drumSounds["pad6"]),
+    loadSound(drumSounds["pad7"]),
+    loadSound(drumSounds["pad8"])  
+  ];
+}
 
 function setup() {
   ctx = getAudioContext();
@@ -73,7 +63,20 @@ function setup() {
   drumMachine = createGraphics(720, 400);
   soundFormats('wav', 'mp3', 'ogg');
 
-  loadSounds = loadSound(padArr, loaded);
+
+
+  //  padArr = [
+  //   loadSound(drumSounds["pad1"]),
+  //   loadSound(drumSounds["pad2"]),
+  //   loadSound(drumSounds["pad3"]),
+  //   loadSound(drumSounds["pad4"]),
+  //   loadSound(drumSounds["pad5"]),
+  //   loadSound(drumSounds["pad6"]),
+  //   loadSound(drumSounds["pad7"]),
+  //   loadSound(drumSounds["pad8"])  
+  // ];
+
+  // loadSounds = loadSound(padArr, loaded);
 
   var div = createDiv("Click to play notes or ")
   div.id("instructions");
@@ -231,8 +234,8 @@ function mousePressed() {
 // When we click a pad
 function mouseClicked() {
   // selectedPad determined by mouse hover
-  loadSounds[selectedPad].playMode('restart');
-  loadSounds[selectedPad].play();
+  padArr[selectedPad].playMode('restart');
+  padArr[selectedPad].play();
 }
 
 // Fade it out when we release

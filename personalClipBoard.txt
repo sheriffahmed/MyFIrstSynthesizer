@@ -1,0 +1,38 @@
+var drumSounds = {
+  pad1: new p5.SoundFile(new Blob(["../assets/LowTomA_GatedReverb_Mono.wav"], {type: 'audio/wav'}) ),
+  pad2: new p5.SoundFile(new Blob(["../assets/BigSnareE_12BitLoFi_Mono.wav"], {type: 'audio/wav'}) ),
+  pad3: new p5.SoundFile(new Blob(["../assets/RimTomB_GatedReverb_Mono.wav"], {type: 'audio/wav'}) ),
+  pad4: new p5.SoundFile(new Blob(["../assets/ReverseCymbal_Mono.wav"], {type: 'audio/wav'}) ),
+  pad5: new p5.SoundFile(new Blob(["../assets/ArcadeGameHits_Mono.wav"], {type: 'audio/wav'}) ),
+  pad6: new p5.SoundFile(new Blob(["../assets/90BpmBongoRiddim_Edit1_Mono.wav"], {type: 'audio/wav'}) ),
+  pad7: new p5.SoundFile(new Blob(["../assets/SleighBell_LargeF#_Reverb_Mono.wav"], {type: 'audio/wav'}) ),
+  pad8: new p5.SoundFile(new Blob(["../assets/90BpmFunkDrumLoop2_Edit_Mono.wav"], {type: 'audio/wav'}) )
+
+} 
+
+
+// function setup() { 
+//     createCanvas(640, 480);
+//   } 
+  
+//   function draw() { 
+//       if(mouseIsPressed){
+//           fill(0);
+//       }else{
+//           fill(255);
+//       }
+//       ellipse(mouseX, mouseY, 80, 80)
+//     // background(220);
+//     // ellipse(50, 50, 80, 80);
+//   }
+
+// let padArr = [
+//   drumSounds["pad1"],
+//   drumSounds["pad2"],
+//   drumSounds["pad3"],
+//   drumSounds["pad4"],
+//   drumSounds["pad5"],
+//   drumSounds["pad6"],
+//   drumSounds["pad7"],
+//   drumSounds["pad8"]  
+// ];
