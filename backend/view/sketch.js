@@ -5,14 +5,14 @@ var drumMachine;
 var notes = [ 60, 62, 64, 65, 67, 69, 71];
 
 var drumSounds = {
-  pad1: ["../assets/LowTomA_GatedReverb_Mono.wav"],
-  pad2: ["../assets/BigSnareE_12BitLoFi_Mono.wav"],
-  pad3: ["../assets/RimTomB_GatedReverb_Mono.wav"],
-  pad4: ["../assets/ReverseCymbal_Mono.wav"],
-  pad5: ["../assets/ArcadeGameHits_Mono.wav"],
-  pad6: ["../assets/90BpmBongoRiddim_Edit1_Mono.wav"],
-  pad7: ["../assets/SleighBell_LargeF#_Reverb_Mono.wav"],
-  pad8: ["../assets/90BpmFunkDrumLoop2_Edit_Mono.wav"]
+  pad1: ["http://localhost:3000/sounds/pad1.wav"],
+  pad2: ["http://localhost:3000/sounds/pad2.wav"],
+  pad3: ["http://localhost:3000/sounds/pad3.wav"],
+  pad4: ["http://localhost:3000/sounds/pad4.wav"],
+  pad5: ["http://localhost:3000/sounds/pad5.wav"],
+  pad6: ["http://localhost:3000/sounds/pad6.wav"],
+  pad7: ["http://localhost:3000/sounds/pad7.wav"],
+  pad8: ["http://localhost:3000/sounds/pad8.wav"]
 
 } 
 
@@ -35,8 +35,9 @@ let ctx, ctxOn;
 
 let loadSounds;
 let selectedPad;
+let inPad;
 let padArr;
-
+let padObj = {}
 function preload() {
   padArr = [
     loadSound(drumSounds["pad1"]),
@@ -107,7 +108,7 @@ function playNote(note, duration) {
   // Fade it in
   osc.fade(0.5,0.2);
 
-  // If we sest a duration, fade it out
+  // If we set a duration, fade it out
   if (duration) {
     setTimeout(function() {
       osc.fade(0,0.2);
@@ -165,23 +166,46 @@ function draw() {
   let drumPadSpacing = drumMachine.width / 10 
    var padSpaceX = drumMachine.width / 7
    var padSpaceY = drumMachine.height / 4
+
+
+
+  //  console.log(padSpaceX)
   for (var i = 0; i < 8; i++) {
-   
+       // Checking to see if a pad is selected
+
+      padObj[i] = false  
     // Draw Pads
 
     // Top Row
     if(i < 4){
+
+
+
       if (mouseX > padSpaceX && mouseX < padSpaceX + 80 && mouseY >=  (drumMachine.height + padSpaceY) - 80 + 100  && mouseY < (drumMachine.height + padSpaceY + 100) ){
         // If we're clicking on a pad
         if (mouseIsPressed) {
+          padObj[i] = true
+          
+          selectedPad = i
+          // inPad = true
           drumMachine.fill(100,255,200);
         // Or just rolling over
         } else {
           drumMachine.fill(107);
           selectedPad = i
+          padObj[i] = true
         }
       } else {
         drumMachine.fill(255);
+        // if (mouseX < padSpaceX && mouseX > padSpaceX + 80 && mouseY <  drumMachine.height + padSpaceY - 80 + 100  && mouseY > drumMachine.height + padSpaceY + 100 ){
+          
+        
+        
+        // selectedPad = null
+        // } 
+        padObj[i] = false
+        
+    
       }
 
 
@@ -197,14 +221,27 @@ function draw() {
       if (mouseX > padSpaceX && mouseX < padSpaceX + 80 && mouseY >=  drumMachine.height + padSpaceY - 80 + 100  && mouseY < drumMachine.height + padSpaceY + 100 ){
         // If we're clicking on a pad
         if (mouseIsPressed) {
+          selectedPad = i
+          padObj[i] = true          
           drumMachine.fill(100,255,200);
+
         // Or just rolling over
         } else {
           drumMachine.fill(107);
           selectedPad = i
+          padObj[i] = true          
         }
       } else {
+
         drumMachine.fill(255);
+        // if (mouseX < padSpaceX && mouseX > padSpaceX + 80 && mouseY <  drumMachine.height + padSpaceY - 80 + 100  && mouseY > drumMachine.height + padSpaceY + 100 ){
+          
+        
+        
+        // selectedPad = null
+        // } 
+
+        padObj[i] = false
       }
 
       drumMachine.rect(padSpaceX, padSpaceY, 80, 80 );
@@ -220,8 +257,10 @@ function draw() {
   drumMachine.noStroke();
     // drumMachine.rect(100, drumMachine.height / 4, 80, 80);
     image(drumMachine, 0, 420, 720, 400)
-    console.log(mouseY, (drumMachine.height / 2) + drumMachine.height  + 100 - 1);
+    // console.log(mouseY, (drumMachine.height / 2) + drumMachine.height  + 100 - 1);
 // console.log(`x axis: ${mouseX}`, `y axis: ${mouseY}`)
+// console.log(`PadSpaceX: ${drumMachine.width / 7}`, `padSPaceEnd: ${drumMachine.width / 7 + 80}`)
+
 }
 
 // When we click we click a key
@@ -234,8 +273,27 @@ function mousePressed() {
 // When we click a pad
 function mouseClicked() {
   // selectedPad determined by mouse hover
-  padArr[selectedPad].playMode('restart');
+
+
+
+// will only play sound if specific pad is pressed
+if(padObj[selectedPad] === true){
+
+  // // stops all playing drum sounds
+  // padArr.forEach(pad =>{
+  //   pad.stop();
+  // })
+  
+    padArr[selectedPad].playMode('restart');
   padArr[selectedPad].play();
+
+}
+else{
+  padArr[selectedPad].stop();
+}
+  
+
+
 }
 
 // Fade it out when we release

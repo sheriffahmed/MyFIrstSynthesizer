@@ -51,52 +51,52 @@ router.get('/', function(req, res, next) {
 // }
 // reader.readAsArrayBuffer(blob)
 router.get('/pad1.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/LowTomA_GatedReverb_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/LowTomA_GatedReverb_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/LowTomA_GatedReverb_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/LowTomA_GatedReverb_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 router.get('/pad2.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/BigSnareE_12BitLoFi_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/BigSnareE_12BitLoFi_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/BigSnareE_12BitLoFi_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/BigSnareE_12BitLoFi_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 router.get('/pad3.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/RimTomB_GatedReverb_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/RimTomB_GatedReverb_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/RimTomB_GatedReverb_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/RimTomB_GatedReverb_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 router.get('/pad4.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/ReverseCymbal_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/ReverseCymbal_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/ReverseCymbal_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/ReverseCymbal_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 
 router.get('/pad5.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/ArcadeGameHits_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/ArcadeGameHits_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/ArcadeGameHits_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/ArcadeGameHits_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 router.get('/pad6.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/90BpmBongoRiddim_Edit1_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/90BpmBongoRiddim_Edit1_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/90BpmBongoRiddim_Edit1_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/90BpmBongoRiddim_Edit1_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 router.get('/pad7.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/SleighBell_LargeF#_Reverb_Mono.wa
+  ms.pipe(req, res, "../backend/assets/SleighBell_LargeF#_Reverb_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/SleighBell_LargeF#_Reverb_Mono.wav" ], {type: "audio/wav"}) }` );
+  // res.send(`${ new Blob( ["../assets/SleighBell_LargeF#_Reverb_Mono.wav" ], {type: "audio/wav"}) }` );
 });
 
 router.get('/pad8.wav', function(req, res, next){
-  // ms.pipe(req, res, "../assets/90BpmFunkDrumLoop2_Edit_Mono.wav");
+  ms.pipe(req, res, "../backend/assets/90BpmFunkDrumLoop2_Edit_Mono.wav");
   
-  res.send(`${ new Blob( ["../assets/90BpmFunkDrumLoop2_Edit_Mono.wav" ], {type: "audio/wav"}) }` )
+  // res.send(`${ new Blob( ["../assets/90BpmFunkDrumLoop2_Edit_Mono.wav" ], {type: "audio/wav"}) }` )
 });
 
 module.exports = router;
